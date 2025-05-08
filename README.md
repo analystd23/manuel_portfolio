@@ -33,4 +33,4 @@ Key areas analyzed:
 - **Inventory Optimization**
 
 📂 **Access SQL Queries Here:**  
-[Business Analysis SQL File](./business_analysis.sql)
+[Business Analysis SQL File](analysis)
