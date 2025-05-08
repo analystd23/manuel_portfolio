@@ -16,9 +16,20 @@ Products - Contains information on available bicycles and accessories.
 
 Orders - Tracks customer purchases, order status, and payment details.
 
-Inventory - Manages stock levels and supplier relationships.
+Order_items - Links customer orders to specific products, tracking quantity and pricing details.
 
-Revenue - Analyzes sales trends and business performance.
+Staff - Stores employee information, including roles, salaries, and work schedules.
+
+Category - Classifies products into different types, such as bicycles, accessories, and spare parts.
+
+Stores - Manages physical and online store locations, inventory levels, and regional operations.
+
+Brand - Contains information about product manufacturers, ensuring brand identity and supplier relations.
+
+📂 **Access SQL Queries Here:**  
+[Kuze_bikes Database](Database creation)
+
+
 
 ### 🔍 Key Features
 ✅ Structured relational database design. ✅ Business intelligence through SQL queries. ✅ Optimized indexing for performance. ✅ Sample queries demonstrating business insights.
