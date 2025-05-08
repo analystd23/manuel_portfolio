@@ -22,3 +22,15 @@ Revenue - Analyzes sales trends and business performance.
 
 ### 🔍 Key Features
 ✅ Structured relational database design. ✅ Business intelligence through SQL queries. ✅ Optimized indexing for performance. ✅ Sample queries demonstrating business insights.
+
+### 📊 Business Analysis
+This repository contains SQL queries for data-driven insights on Kuzebikes.  
+Key areas analyzed:
+- **Product Profitability**
+- **Customer Lifetime Value (CLV)**
+- **Customer Segmentation**
+- **Sales Performance**
+- **Inventory Optimization**
+
+📂 **Access SQL Queries Here:**  
+[Business Analysis SQL File](./business_analysis.sql)
