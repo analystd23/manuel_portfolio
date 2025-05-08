@@ -27,7 +27,7 @@ Stores - Manages physical and online store locations, inventory levels, and regi
 Brand - Contains information about product manufacturers, ensuring brand identity and supplier relations.
 
 📂 **Access SQL Queries Here:**  
-[Kuze_bikes Database](Database creation)
+[Kuze_bikes Database](Database)
 
 
 
