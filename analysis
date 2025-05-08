@@ -1,0 +1,124 @@
+-- Product Profitability Analysis
+
+SELECT p.product_name, p.list_price, SUM(oi.quantity) AS total_sales, 
+       SUM(oi.quantity * p.list_price) AS total_revenue
+FROM order_items oi
+JOIN product p ON oi.product_id = p.product_id
+GROUP BY p.product_name, p.list_price
+ORDER BY total_revenue DESC;
+
+-- Customer Lifetime Value (CLV) Analysis
+
+WITH customer_orders AS (
+  SELECT c.customer_id, SUM(oi.quantity * p.list_price) AS total_spent
+  FROM order_items oi
+  JOIN orders o ON oi.order_id = o.order_id
+  JOIN product p ON oi.product_id = p.product_id
+  JOIN customer c ON o.customer_id = c.customer_id
+  GROUP BY c.customer_id
+)
+SELECT co.customer_id, total_spent, 
+       (total_spent / COUNT(DISTINCT oi.order_id)) AS clv
+FROM customer_orders co
+JOIN order_items oi ON co.customer_id = (SELECT o.customer_id FROM orders o WHERE o.order_id = oi.order_id)
+GROUP BY co.customer_id
+ORDER BY clv DESC;
+
+
+-- Customer Segmentation Analysis
+
+SELECT 
+  c.first_name, 
+  c.last_name, 
+  SUM(oi.quantity * oi.list_price) AS total_spent
+FROM 
+  customer c
+  JOIN orders o ON c.customer_id = o.customer_id
+  JOIN order_items oi ON o.order_id = oi.order_id
+GROUP BY 
+  c.first_name, c.last_name
+ORDER BY 
+  total_spent DESC;
+
+
+-- sales performance
+
+SELECT 
+  DATE_FORMAT(o.order_date, '%Y-%m') AS sales_month,
+  COUNT(DISTINCT o.order_id) AS num_orders,
+  SUM(oi.quantity * oi.list_price) AS total_revenue,
+  AVG(oi.quantity * oi.list_price) AS avg_order_value
+FROM 
+  orders o
+  JOIN order_items oi ON o.order_id = oi.order_id
+GROUP BY 
+  sales_month
+ORDER BY 
+  total_revenue desc;
+
+
+-- inventory optimization
+
+-- Inventory Turnover Rate
+
+SELECT 
+  SUM(oi.quantity * oi.list_price) AS total_sales,
+  AVG(oi.quantity * oi.list_price) AS average_sales,
+  SUM(oi.quantity * oi.list_price) / AVG(oi.quantity * oi.list_price) AS inventory_turnover_rate
+FROM 
+  order_items oi;
+
+-- Slow-moving or Dead Stock
+
+SELECT 
+  p.product_name,
+  SUM(oi.quantity) AS total_sales
+FROM 
+  product p
+  LEFT JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY 
+  p.product_name
+HAVING 
+  SUM(oi.quantity) < 5  -- adjust the threshold as needed
+ORDER BY 
+  total_sales DESC;
+
+-- Optimal Stock Levels (EOQ)
+
+SELECT 
+  p.product_name,
+  SQRT(2 * SUM(oi.quantity) * 100 / 10) AS eoq
+FROM 
+  product p
+  JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY 
+  p.product_name;
+
+-- Seasonality and Trends
+
+SELECT 
+  DATE_FORMAT(o.order_date, '%Y-%m') AS sales_month,
+  SUM(oi.quantity * oi.list_price) AS total_sales
+FROM 
+  orders o
+  JOIN order_items oi ON o.order_id = oi.order_id
+GROUP BY 
+  sales_month
+ORDER BY 
+  sales_month ASC;
+
+-- Inventory Classification
+
+SELECT 
+  p.product_name,
+  CASE
+    WHEN SUM(oi.quantity) > 10 THEN 'Fast-moving'
+    WHEN SUM(oi.quantity) BETWEEN 5 AND 10 THEN 'Slow-moving'
+    ELSE 'Dead stock'
+  END AS inventory_classification
+FROM 
+  product p
+  LEFT JOIN order_items oi ON p.product_id = oi.product_id
+GROUP BY 
+  p.product_name;
+
