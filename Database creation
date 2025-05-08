@@ -1,0 +1,125 @@
+-- Create the kuze_bikes database
+CREATE DATABASE kuze_bikes;
+USE kuze_bikes;
+
+-- Create the brands table
+CREATE TABLE brands (
+    brand_id INT AUTO_INCREMENT PRIMARY KEY,
+    brand_name VARCHAR(100) NOT NULL
+);
+select *
+from kuze_bikes.brands;
+
+ -- Create the stores table
+CREATE TABLE stores (
+    store_id INT AUTO_INCREMENT PRIMARY KEY,
+    store_name VARCHAR(100) NOT NULL,
+    phone VARCHAR(15),
+    email VARCHAR(100),
+    street VARCHAR(100),
+    city VARCHAR(100),
+    state VARCHAR(50),
+    zip_code VARCHAR(10)
+);   
+
+select *
+from kuze_bikes.stores;
+
+-- Create the customer table
+CREATE TABLE customer (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100),
+    street VARCHAR(100),
+    city VARCHAR(100),
+    state VARCHAR(50),
+    zipcode VARCHAR(10)
+);
+
+select *
+from kuze_bikes.customer;
+
+-- Create the product table
+CREATE TABLE product (
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(100) NOT NULL,
+    brand_id INT,
+    category_id INT,   -- Assuming category_id is needed, but not defined in the provided schema.
+    model_id INT,      -- Assuming model_id is needed, but not defined in the provided schema.
+    list_price DECIMAL(10, 2),
+    FOREIGN KEY (brand_id) REFERENCES brands(brand_id)
+);
+
+select *
+from kuze_bikes.product;
+
+-- Create the staff table
+CREATE TABLE staff (
+    staff_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    email VARCHAR(100),
+    phone VARCHAR(15),
+    active BOOLEAN DEFAULT TRUE,
+    store_id INT,
+    manager_id INT,
+    FOREIGN KEY (store_id) REFERENCES stores(store_id),
+    FOREIGN KEY (manager_id) REFERENCES staff(staff_id)
+);
+
+select *
+from kuze_bikes.staff;
+
+-- Create the order_items table
+CREATE TABLE order_items (
+    order_id INT NOT NULL,
+    item_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    list_price DECIMAL(10, 2) NOT NULL,
+    discount DECIMAL(5, 2) DEFAULT 0,
+    PRIMARY KEY (order_id, item_id),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES product(product_id)
+);
+
+select *
+from kuze_bikes.order_items;
+
+-- Create the orders table
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    order_status VARCHAR(50),
+    order_date DATE,
+    required_date DATE,
+    shipped_date DATE,
+    store_id INT,
+    staff_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+    FOREIGN KEY (store_id) REFERENCES stores(store_id),
+    FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
+);
+
+select *
+from kuze_bikes.orders;
+
+
+-- Indexing products table
+CREATE INDEX idx_product_brand_id ON product (brand_id);
+CREATE INDEX idx_product_category_id ON product (category_id);
+CREATE INDEX idx_product_product_name ON product (product_name);
+
+-- Indexing orders table
+CREATE INDEX idx_orders_customer_id ON orders (customer_id);
+CREATE INDEX idx_orders_order_date ON orders (order_date);
+CREATE INDEX idx_orders_order_status ON orders (order_status);
+
+-- Indexing customer table
+CREATE INDEX idx_customer_email ON customer (email);
+
+-- Indexing order_items table
+CREATE INDEX idx_order_items_order_id ON order_items (order_id);
+CREATE INDEX idx_order_items_product_id ON order_items (product_id);
+
