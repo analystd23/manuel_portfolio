@@ -7,6 +7,17 @@ Kuzebikes is a SQL-based database designed for a business proposal demonstrating
 ### 📂 Project Overview
 This database models a bicycle business, including customer interactions, product inventory, orders, and financial insights. The goal is to optimize operations and generate actionable business insights.
 
+## 📂 Dataset Source
+The dataset used for the Kuzebikes database was sourced from [Kaggle](https://www.kaggle.com/) and includes customer details, product listings, and orders.
+
+📂 **Available CSV Files:**  
+- [Customers Data](./data/customers.csv)  
+- [Products Data](./data/products.csv)  
+- [Orders Data](./data/orders.csv)  
+- [order_items]()
+- [Staff]()
+- [Category]()
+
 ### 📋 Database Schema
 The Kuzebikes database consists of the following key tables:
 
@@ -45,3 +56,4 @@ Key areas analyzed:
 
 📂 **Access SQL Queries Here:**  
 [Business Analysis SQL File](analysis)
+
