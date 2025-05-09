@@ -62,4 +62,4 @@ Key areas analyzed:
 ## 📊 Business Analysis Summary
 After analyzing Kuzebikes' database, key insights and strategies were developed to improve sales, customer engagement, and inventory efficiency.  
 
-📂 **[Read Full Business Conclusion](./docs/conclusion_summary.md)**  
+📂 **[Read Full Business Conclusion](conclusions)**  
