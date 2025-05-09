@@ -11,12 +11,14 @@ This database models a bicycle business, including customer interactions, produc
 The dataset used for the Kuzebikes database was sourced from [Kaggle](https://www.kaggle.com/) and includes customer details, product listings, and orders.
 
 📂 **Available CSV Files:**  
-- [Customers Data](./data/customers.csv)  
-- [Products Data](./data/products.csv)  
-- [Orders Data](./data/orders.csv)  
-- [order_items]()
-- [Staff]()
-- [Category]()
+- [Customers](customers.csv)  
+- [Products](products.csv)  
+- [Orders Data](orders.csv)  
+- [Order_items](order_items.csv)
+- [Staff](staffs.csv)
+- [Category](categories.csv)
+- [Stores](stores.csv)
+- [Brand](brands.csv)
 
 ### 📋 Database Schema
 The Kuzebikes database consists of the following key tables:
