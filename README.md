@@ -59,3 +59,7 @@ Key areas analyzed:
 📂 **Access SQL Queries Here:**  
 [Business Analysis SQL File](analysis)
 
+## 📊 Business Analysis Summary
+After analyzing Kuzebikes' database, key insights and strategies were developed to improve sales, customer engagement, and inventory efficiency.  
+
+📂 **[Read Full Business Conclusion](./docs/conclusion_summary.md)**  
