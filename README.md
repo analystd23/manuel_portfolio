@@ -1,10 +1,10 @@
-# manuel_portfolio
-## PROJECT 1:🚴 Kuzebikes SQL Database
 
-### 📌 Introduction
+# 🚴 Kuzebikes SQL Database
+
+## 📌 Introduction
 Kuzebikes is a SQL-based database designed for a business proposal demonstrating data-driven decision-making. This project showcases structured data analysis for business insights such as inventory tracking, customer analytics, and sales performance.
 
-### 📂 Project Overview
+## 📂 Project Overview
 This database models a bicycle business, including customer interactions, product inventory, orders, and financial insights. The goal is to optimize operations and generate actionable business insights.
 
 ## 📂 Dataset Source
